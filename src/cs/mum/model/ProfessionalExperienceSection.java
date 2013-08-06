@@ -1,9 +1,18 @@
 package cs.mum.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (name = "ProfessionalExperiencesection", schema = "coasdb")
 public class ProfessionalExperienceSection {
 
 	private long Id;
-	private ProgrammingLanguage progLangUsedMostProfCarrer;
+	
 	private String notOnListprogLangUsedMostProfCarrer;
 	private String programmingCarrerSummary;
 	private int programmingCarrerYears;
@@ -20,7 +29,7 @@ public class ProfessionalExperienceSection {
 			String universityLevelDataStructureCourseTitle,
 			String universityLevelMathCourseTitles) {
 		
-		this.progLangUsedMostProfCarrer = progLangUsedMostProfCarrer;
+		
 		this.notOnListprogLangUsedMostProfCarrer = notOnListprogLangUsedMostProfCarrer;
 		this.programmingCarrerSummary = programmingCarrerSummary;
 		this.programmingCarrerYears = programmingCarrerYears;
@@ -29,26 +38,15 @@ public class ProfessionalExperienceSection {
 		this.universityLevelMathCourseTitles = universityLevelMathCourseTitles;
 	}
 
-
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public long getId() {
 		return Id;
 	}
 
 
-	public void setId(long id) {
-		Id = id;
-	}
-
-
-	public ProgrammingLanguage getProgLangUsedMostProfCarrer() {
-		return progLangUsedMostProfCarrer;
-	}
-
-
-	public void setProgLangUsedMostProfCarrer(
-			ProgrammingLanguage progLangUsedMostProfCarrer) {
-		this.progLangUsedMostProfCarrer = progLangUsedMostProfCarrer;
-	}
+	
 
 
 	public String getNotOnListprogLangUsedMostProfCarrer() {

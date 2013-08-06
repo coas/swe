@@ -1,5 +1,14 @@
 package cs.mum.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table ( schema = "coasdb")
 public class UnivLevDataStructCourse {
 
 	private int Id;
@@ -15,6 +24,10 @@ public class UnivLevDataStructCourse {
 		this.dataStructureCourse = dataStructureCourse;
 		this.dataStructureValue = dataStructureValue;
 	}
+	
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public int getId() {
 		return Id;
 	}

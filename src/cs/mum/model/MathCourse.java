@@ -2,6 +2,15 @@ package cs.mum.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (name = "Mathcourse", schema = "coasdb")
 public class MathCourse {
 
 	private int Id;
@@ -13,12 +22,16 @@ public class MathCourse {
 	
 	
 	public MathCourse(String description, Date cDate, User cUser, String status) {
-		super();
+		
 		this.description = description;
 		this.cDate = cDate;
 		this.cUser = cUser;
 		Status = status;
 	}
+	
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public int getId() {
 		return Id;
 	}

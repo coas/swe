@@ -1,7 +1,19 @@
 package cs.mum.model;
 
+
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import cs.mum.model.User;
+
+
+@Entity
+@Table ( schema = "coasdb")
 public class ProgrammingLanguage {
 
 	private int Id;
@@ -21,6 +33,10 @@ public class ProgrammingLanguage {
 		this.cUser = cUser;
 		this.status = status;
 	}
+	
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public int getId() {
 		return Id;
 	}

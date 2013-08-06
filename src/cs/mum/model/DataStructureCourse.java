@@ -2,6 +2,17 @@ package cs.mum.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "DatastractureCourse", schema = "coasdb")
 public class DataStructureCourse {
   
 	private int Id;
@@ -9,6 +20,8 @@ public class DataStructureCourse {
 	private Date cDate;
 	private User cUser;
 	private String Status;
+	
+	
 	public DataStructureCourse(String description, Date cDate, User cUser,
 			String status) {
 		super();
@@ -17,6 +30,10 @@ public class DataStructureCourse {
 		this.cUser = cUser;
 		Status = status;
 	}
+	
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public int getId() {
 		return Id;
 	}
@@ -35,6 +52,8 @@ public class DataStructureCourse {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
+	
+	@ManyToOne
 	public User getcUser() {
 		return cUser;
 	}
