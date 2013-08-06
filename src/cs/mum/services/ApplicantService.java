@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.dao.IApplicantDAO;
+import cs.mum.dao.IUserDAO;
 import cs.mum.mb.Helper;
 import cs.mum.model.User;
 @Service
 public class ApplicantService {
 	@Autowired
-	private IApplicantDAO applicantDao;
+	private IUserDAO applicantDao;
 
-	public void setApplicantDao(IApplicantDAO applicantDao) {
+	public void setApplicantDao(IUserDAO applicantDao) {
 		this.applicantDao = applicantDao;
 	}
 

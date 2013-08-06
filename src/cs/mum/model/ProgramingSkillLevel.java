@@ -18,7 +18,7 @@ public class ProgramingSkillLevel {
 	private ProgramingExprienceValue knowdlageLevel;
 	
 	
-	public ProgramingSkillLevel(ProgrammingLanguage programingLanguage,
+	public ProgramingSkillLevel(ProgramingLanguage programingLanguage,
 			ProgramingExprienceValue knowdlageLevel) {
 		super();
 		this.programingLanguage = programingLanguage;

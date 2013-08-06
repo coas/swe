@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import cs.mum.model.ProgrammingLanguage;
+
 @Entity
 @Table (name = "IndivitualworkExprience", schema = "coasdb")
 public class IndividualWorkExperience {

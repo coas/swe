@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.dao.IApplicantLoginDAO;
+import cs.mum.dao.IUserLoginDAO;
 import cs.mum.mb.Helper;
 import cs.mum.model.UserLogin;
 @Service
 public class ApplicantLoginService {
 	@Autowired
-	private IApplicantLoginDAO applicantLoginDAO;
+	private IUserLoginDAO applicantLoginDAO;
 	private static final String regMailSubj = "Compro on-Line Application Verification";
 	
 	private Helper help = new Helper();
 
-	public void setApplicantLoginDAO(IApplicantLoginDAO applicantLoginDAO) {
+	public void setApplicantLoginDAO(IUserLoginDAO applicantLoginDAO) {
 		this.applicantLoginDAO = applicantLoginDAO;
 	}
 
