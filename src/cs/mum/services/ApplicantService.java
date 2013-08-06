@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cs.mum.dao.IApplicantDAO;
 import cs.mum.mb.Helper;
-import cs.mum.model.Applicant;
+import cs.mum.model.User;
 @Service
 public class ApplicantService {
 	@Autowired
@@ -21,27 +21,27 @@ public class ApplicantService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-	public List<Applicant> getApplicants() {
+	public List<User> getApplicants() {
 		return applicantDao.getAllApplicant();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Applicant getApplicantById(long id) {
+	public User getApplicantById(long id) {
 		return applicantDao.getApplicantById(id);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void insertApplicant(Applicant applicant) {
+	public void insertApplicant(User applicant) {
 		applicant.setCreationDate(new Date());
 		applicant.setRegVerification(Helper.md5((String.valueOf(applicant.getCreationDate()))));
 		applicantDao.insert(applicant);
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void updateApplicant(Applicant applicant) {
+	public void updateApplicant(User applicant) {
 		applicantDao.insert(applicant);
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Applicant getApplicantByRegVerify(String regVerify) {
+	public User getApplicantByRegVerify(String regVerify) {
 		return applicantDao.getApplicantByRegVerify(regVerify);
 	}
 }

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import cs.mum.mb.Helper;
-import cs.mum.model.Applicant;
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.User;
+import cs.mum.model.UserLogin;
 import cs.mum.services.ApplicantLoginService;
 import cs.mum.services.ApplicantService;
 import cs.mum.validation.LoginValidator;
@@ -35,12 +35,12 @@ public class ApplicantLoginController {
 	private Helper helper;
 	
 	@RequestMapping(value = "/")
-	public String login(@ModelAttribute("applicantlogin") ApplicantLogin applicantLogin,BindingResult result) {
+	public String login(@ModelAttribute("applicantlogin") UserLogin applicantLogin,BindingResult result) {
 		return "login";
 	}
 
 	@RequestMapping(value = "/logginApplication", method = RequestMethod.POST)
-	public String login(@ModelAttribute("applicantlogin") ApplicantLogin applicantLogin,BindingResult result,
+	public String login(@ModelAttribute("applicantlogin") UserLogin applicantLogin,BindingResult result,
 			Model model,HttpServletRequest request) {
 		loginValidate.validate(applicantLogin, result);
 		if(result.hasErrors()) {
@@ -49,7 +49,7 @@ public class ApplicantLoginController {
 			boolean flag = false;
 			String displayPage = "";
 	
-			List<ApplicantLogin> myList = applicantLoginService
+			List<UserLogin> myList = applicantLoginService
 					.getApplicantLoginByUsernamePwd(applicantLogin.getUserName(), applicantLogin.getPassword());
 			model.addAttribute("login", flag);
 			if (myList.size() > 0) {
@@ -74,21 +74,21 @@ public class ApplicantLoginController {
 	}
 	
 	@RequestMapping(value="/recoverMyAccount")
-	public String recoverMyAccount(@ModelAttribute("recoverAccount") ApplicantLogin applicantLogin,
+	public String recoverMyAccount(@ModelAttribute("recoverAccount") UserLogin applicantLogin,
 			BindingResult result) {
 		return "recoverMyAccount";
 	}
 	@RequestMapping(value="/recoverMyAccount", method=RequestMethod.POST)
-	public String recoverMyaccount(@ModelAttribute("recoverAccount") ApplicantLogin applicantLogin,
+	public String recoverMyaccount(@ModelAttribute("recoverAccount") UserLogin applicantLogin,
 			BindingResult result) {
 		loginValidate.validateRecoverAccount(applicantLogin, result);
 		if(result.hasErrors()) {
 			return "recoverMyAccount";
 		}else{
 			String pwd = Helper.randomAlphaNumeric(9);
-			List<ApplicantLogin> login =applicantLoginService.
+			List<UserLogin> login =applicantLoginService.
 					getApplicantByEmailAddress(applicantLogin.getUserName());
-			ApplicantLogin pLogin = login.get(0);
+			UserLogin pLogin = login.get(0);
 			pLogin.setPassword(Helper.md5(pwd));
 			applicantLoginService.updateUserLogin(pLogin);
 			String mailBody = "Dear "+applicantLogin.getUserName();
@@ -109,20 +109,20 @@ public class ApplicantLoginController {
 		}
 	}
 	@RequestMapping(value="/changePassword")
-	public String changePassword(@ModelAttribute("changePassword") ApplicantLogin applicantLogin,
+	public String changePassword(@ModelAttribute("changePassword") UserLogin applicantLogin,
 			BindingResult result) {
 		return "changePassword";
 	}
 	
 	@RequestMapping(value="/changePassword", method=RequestMethod.POST)
-	public String changePassword(@ModelAttribute("changePassword") ApplicantLogin applicantLogin, 
+	public String changePassword(@ModelAttribute("changePassword") UserLogin applicantLogin, 
 			BindingResult result,@ModelAttribute("email") String email) {
 		loginValidate.validateChangePassword(applicantLogin, result, email);
 		if(result.hasErrors()) {
 			return "changePassword";
 		}else{
-			List<ApplicantLogin> list = applicantLoginService.getApplicantByEmailAddress(email);
-			ApplicantLogin login = list.get(0);
+			List<UserLogin> list = applicantLoginService.getApplicantByEmailAddress(email);
+			UserLogin login = list.get(0);
 			login.setPassword(Helper.md5(applicantLogin.getNewPassword()));
 			applicantLoginService.updateUserLogin(login);
 			return "redirect:/";
@@ -132,8 +132,8 @@ public class ApplicantLoginController {
 	@RequestMapping(value="/suspiciousLock/{option}/{pwd}/")
 	//option variable is the MD5() for creation date
 	public String suspiciousLock(@PathVariable String option, @PathVariable String pwd) {
-		ApplicantLogin applicantLogin = applicantLoginService.getApplicantLoginByCdatePassword(option, pwd);
-		Applicant applicant = applicantLogin.getApplicant();
+		UserLogin applicantLogin = applicantLoginService.getApplicantLoginByCdatePassword(option, pwd);
+		User applicant = applicantLogin.getApplicant();
 		applicant.setStatus(false);
 		applicantService.updateApplicant(applicant);
 		return "redirect:/";

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cs.mum.dao.IApplicantLoginDAO;
 import cs.mum.mb.Helper;
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.UserLogin;
 @Service
 public class ApplicantLoginService {
 	@Autowired
@@ -23,17 +23,17 @@ public class ApplicantLoginService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-	public List<ApplicantLogin> getApplicants() {
+	public List<UserLogin> getApplicants() {
 		return applicantLoginDAO.getAllApplicantLogin();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public ApplicantLogin getApplicantById(long id) {
+	public UserLogin getApplicantById(long id) {
 		return applicantLoginDAO.getApplicationLoginById(id);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void insertApplicantLogin(ApplicantLogin applicant) {
+	public void insertApplicantLogin(UserLogin applicant) {
 		applicant.setPassword(Helper.md5(applicant.getPassword()));
 		applicantLoginDAO.insert(applicant);
 		String regmailBody  = "Dear "+ applicant.getApplicant().getFirstName()+ ",\n\n\n";
@@ -46,21 +46,21 @@ public class ApplicantLoginService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void updateUserLogin(ApplicantLogin login) {
+	public void updateUserLogin(UserLogin login) {
 		applicantLoginDAO.insert(login);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<ApplicantLogin> getApplicantLoginByUsernamePwd(String userName,String passWord) {
+	public List<UserLogin> getApplicantLoginByUsernamePwd(String userName,String passWord) {
 		return applicantLoginDAO.getApplicantLoginByUsernamePassword(userName, passWord);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<ApplicantLogin> getApplicantByEmailAddress(String username) {
+	public List<UserLogin> getApplicantByEmailAddress(String username) {
 		return applicantLoginDAO.getApplicantByEmailAddress(username);
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public ApplicantLogin getApplicantLoginByCdatePassword(String option,String pwd) {
+	public UserLogin getApplicantLoginByCdatePassword(String option,String pwd) {
 		return applicantLoginDAO.getApplicantLoginByCdatePassword(option, pwd);
 	}
 	

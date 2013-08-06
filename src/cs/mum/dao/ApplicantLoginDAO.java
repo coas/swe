@@ -6,8 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cs.mum.model.Applicant;
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.User;
+import cs.mum.model.UserLogin;
 
 public class ApplicantLoginDAO implements IApplicantLoginDAO {
 	@Autowired
@@ -17,29 +17,29 @@ public class ApplicantLoginDAO implements IApplicantLoginDAO {
 		this.sf = sf;
 	}
 
-	public void insert(ApplicantLogin applicant) {
+	public void insert(UserLogin applicant) {
 		sf.getCurrentSession().saveOrUpdate(applicant);
 	}
 
-	public List<ApplicantLogin> getAllApplicantLogin() {
+	public List<UserLogin> getAllApplicantLogin() {
 
 		@SuppressWarnings("unchecked")
-		List<ApplicantLogin> applicant = sf.getCurrentSession()
+		List<UserLogin> applicant = sf.getCurrentSession()
 				.createQuery("from ApplicantLogin").list();
 
 		return applicant;
 	}
 
 	@Override
-	public ApplicantLogin getApplicationLoginById(long id) {
-		ApplicantLogin applicant = (ApplicantLogin) sf.getCurrentSession().get(
-				Applicant.class, id);
+	public UserLogin getApplicationLoginById(long id) {
+		UserLogin applicant = (UserLogin) sf.getCurrentSession().get(
+				User.class, id);
 		return applicant;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ApplicantLogin> getApplicantLoginByUsernamePassword(String userName,
+	public List<UserLogin> getApplicantLoginByUsernamePassword(String userName,
 			String passWord) {
 		String sql="from ApplicantLogin l where l.userName=:username " +
 				"and l.password=MD5(:password) and l.applicant.status=1";
@@ -52,7 +52,7 @@ public class ApplicantLoginDAO implements IApplicantLoginDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ApplicantLogin> getApplicantByEmailAddress(String username) {
+	public List<UserLogin> getApplicantByEmailAddress(String username) {
 		String sql = "FROM ApplicantLogin WHERE userName=:username";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setParameter("username", username);
@@ -60,11 +60,11 @@ public class ApplicantLoginDAO implements IApplicantLoginDAO {
 	}
 
 	@Override
-	public ApplicantLogin getApplicantLoginByCdatePassword(String cdate, String pwd) {
+	public UserLogin getApplicantLoginByCdatePassword(String cdate, String pwd) {
 		String sql = "FROM ApplicantLogin l WHERE password=:pwd";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setParameter("pwd", pwd);
-		return (ApplicantLogin)query.uniqueResult();
+		return (UserLogin)query.uniqueResult();
 	}
 
 }

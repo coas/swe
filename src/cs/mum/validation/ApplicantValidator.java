@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import cs.mum.model.Applicant;
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.User;
+import cs.mum.model.UserLogin;
 import cs.mum.services.ApplicantLoginService;
 @Service
 public class ApplicantValidator implements Validator {
@@ -21,13 +21,13 @@ public class ApplicantValidator implements Validator {
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Applicant.class.equals(clazz);
+		return User.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Applicant applicant = (Applicant)target;
-		List<ApplicantLogin> list = applicantLoginService.
+		User applicant = (User)target;
+		List<UserLogin> list = applicantLoginService.
 				getApplicantByEmailAddress(applicant.getEmailAddress());
 		
 		if(applicant.getFirstName() == "" || applicant.getLastName() == "" 

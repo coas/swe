@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.UserLogin;
 import cs.mum.services.ApplicantLoginService;
 
 @Service
@@ -22,13 +22,13 @@ public class LoginValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return ApplicantLogin.class.equals(clazz);
+		return UserLogin.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ApplicantLogin applicantLogin = (ApplicantLogin) target;
-		List<ApplicantLogin> list = applicantLoginService
+		UserLogin applicantLogin = (UserLogin) target;
+		List<UserLogin> list = applicantLoginService
 				.getApplicantLoginByUsernamePwd(applicantLogin.getUserName(),
 						applicantLogin.getPassword());
 		if (applicantLogin.getUserName() == ""
@@ -39,8 +39,8 @@ public class LoginValidator implements Validator {
 	}
 
 	public void validateRecoverAccount(Object target, Errors errors) {
-		ApplicantLogin applicantLogin = (ApplicantLogin)target;
-		List<ApplicantLogin> list = applicantLoginService.
+		UserLogin applicantLogin = (UserLogin)target;
+		List<UserLogin> list = applicantLoginService.
 				getApplicantByEmailAddress(applicantLogin.getUserName());
 		if(applicantLogin.getUserName() == "" || list.size() != 1) {
 			if(applicantLogin.getUserName() == "") {
@@ -56,8 +56,8 @@ public class LoginValidator implements Validator {
 	}
 	
 	public void validateChangePassword(Object target, Errors errors, String email) {
-		ApplicantLogin applicantLogin = (ApplicantLogin)target;
-		List<ApplicantLogin> list = applicantLoginService.
+		UserLogin applicantLogin = (UserLogin)target;
+		List<UserLogin> list = applicantLoginService.
 				getApplicantByEmailAddress(email);
 		if(applicantLogin.getPassword() == "" || applicantLogin.getConfirmPassword() == "" || 
 				applicantLogin.getNewPassword() == "") {

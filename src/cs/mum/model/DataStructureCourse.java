@@ -9,7 +9,7 @@ public class DataStructureCourse {
 	private Date cDate;
 	private User cUser;
 	private String Status;
-	public DataStructureValue(String description, Date cDate, User cUser,
+	public DataStructureCourse(String description, Date cDate, User cUser,
 			String status) {
 		super();
 		this.description = description;

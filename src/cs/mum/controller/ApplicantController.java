@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import cs.mum.model.Applicant;
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.User;
+import cs.mum.model.UserLogin;
 import cs.mum.services.ApplicantLoginService;
 import cs.mum.services.ApplicantService;
 import cs.mum.validation.ApplicantValidator;
@@ -34,12 +34,12 @@ public class ApplicantController {
 	
 	@RequestMapping(value="/register.html")
 	public String registerApplicant(Model model) {
-		Applicant applicant = new Applicant();
+		User applicant = new User();
 		model.addAttribute("applicantBean", applicant);
 		return "register";
 	}
 	@RequestMapping(value="register.html", method=RequestMethod.POST)
-	public String registerApplicant(@ModelAttribute("applicantBean") Applicant applicantBean, 
+	public String registerApplicant(@ModelAttribute("applicantBean") User applicantBean, 
 			BindingResult result,HttpServletRequest req, 
 			@RequestParam("recaptcha_challenge_field") String challenge,
 	        @RequestParam("recaptcha_response_field") String response,
@@ -80,7 +80,7 @@ public class ApplicantController {
 		}else{
 			applicantService.insertApplicant(applicantBean);
 			
-			ApplicantLogin login = new ApplicantLogin(applicantBean.getEmailAddress(),
+			UserLogin login = new UserLogin(applicantBean.getEmailAddress(),
 					applicantBean.getLogin().getPassword(), applicantBean.getLogin().getPassword(), applicantBean);
 			applicantLoginService.insertApplicantLogin(login);
 			redirect.addFlashAttribute("newAppMsg", "Successfull Registered, " +
@@ -91,7 +91,7 @@ public class ApplicantController {
 	
 	@RequestMapping(value="/regVerification/{regverify}")
 	public String regmailVerification(@PathVariable String regverify) {
-		Applicant applicant = applicantService.getApplicantByRegVerify(regverify);
+		User applicant = applicantService.getApplicantByRegVerify(regverify);
 		applicant.setStatus(true);
 		applicant.setRegVerification("Y");
 		applicantService.updateApplicant(applicant);

@@ -2,19 +2,19 @@ package cs.mum.dao;
 
 import java.util.List;
 
-import cs.mum.model.ApplicantLogin;
+import cs.mum.model.UserLogin;
 
 public interface IApplicantLoginDAO {
-	public ApplicantLogin getApplicationLoginById(long id);
+	public UserLogin getApplicationLoginById(long id);
 
-	public List<ApplicantLogin> getAllApplicantLogin();
+	public List<UserLogin> getAllApplicantLogin();
 
-	public void insert(ApplicantLogin applicantLogin);
+	public void insert(UserLogin applicantLogin);
 	
-	public List<ApplicantLogin> getApplicantLoginByUsernamePassword(String userName,String passWord);
+	public List<UserLogin> getApplicantLoginByUsernamePassword(String userName,String passWord);
 	
-	public List<ApplicantLogin> getApplicantByEmailAddress(String username);
+	public List<UserLogin> getApplicantByEmailAddress(String username);
 	
-	public ApplicantLogin getApplicantLoginByCdatePassword(String cdate, String pwd);
+	public UserLogin getApplicantLoginByCdatePassword(String cdate, String pwd);
 		
 }

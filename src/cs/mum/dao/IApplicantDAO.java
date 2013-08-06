@@ -2,17 +2,17 @@ package cs.mum.dao;
 
 import java.util.List;
 
-import cs.mum.model.Applicant;
+import cs.mum.model.User;
 
 public interface IApplicantDAO {
-	public Applicant getApplicationById(long id);
+	public User getApplicationById(long id);
 
-	public List<Applicant> getAllApplicant();
+	public List<User> getAllApplicant();
 
-	public void insert(Applicant applicant);
+	public void insert(User applicant);
 	
-	public Applicant getApplicantById(long id);
+	public User getApplicantById(long id);
 	
-	public Applicant getApplicantByRegVerify(String regVerify);
+	public User getApplicantByRegVerify(String regVerify);
 	
 }
