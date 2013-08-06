@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "applicant", schema = "coasdb")
+@Table (name = "user", schema = "coasdb")
 public class User {
 	private long id;
 	private String firstName;
@@ -84,7 +84,7 @@ public class User {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	@OneToOne(mappedBy="applicant")
+	@OneToOne(mappedBy="user")
 	public UserLogin getLogin() {
 		return login;
 	}

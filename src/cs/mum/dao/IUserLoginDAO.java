@@ -5,16 +5,16 @@ import java.util.List;
 import cs.mum.model.UserLogin;
 
 public interface IUserLoginDAO {
-	public UserLogin getApplicationLoginById(long id);
+	public UserLogin getUserLoginById(long id);
 
-	public List<UserLogin> getAllApplicantLogin();
+	public List<UserLogin> getAllUserLogin();
 
-	public void insert(UserLogin applicantLogin);
+	public void insert(UserLogin userLogin);
 	
-	public List<UserLogin> getApplicantLoginByUsernamePassword(String userName,String passWord);
+	public List<UserLogin> getUserLoginByUsernamePassword(String userName,String passWord);
 	
-	public List<UserLogin> getApplicantByEmailAddress(String username);
+	public List<UserLogin> getUserByEmailAddress(String username);
 	
-	public UserLogin getApplicantLoginByCdatePassword(String cdate, String pwd);
+	public UserLogin getUserLoginByCdatePassword(String cdate, String pwd);
 		
 }

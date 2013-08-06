@@ -9,14 +9,14 @@ import org.springframework.validation.Validator;
 
 import cs.mum.model.User;
 import cs.mum.model.UserLogin;
-import cs.mum.services.ApplicantLoginService;
+import cs.mum.services.UserLoginService;
 @Service
-public class ApplicantValidator implements Validator {
+public class UserValidator implements Validator {
 	@Autowired
-	private ApplicantLoginService applicantLoginService;
+	private UserLoginService userLoginService;
 
-	public void setApplicantLoginService(ApplicantLoginService applicantLoginService) {
-		this.applicantLoginService = applicantLoginService;
+	public void setUserLoginService(UserLoginService userLoginService) {
+		this.userLoginService = userLoginService;
 	}
 	
 	@Override
@@ -26,32 +26,32 @@ public class ApplicantValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		User applicant = (User)target;
-		List<UserLogin> list = applicantLoginService.
-				getApplicantByEmailAddress(applicant.getEmailAddress());
+		User user = (User)target;
+		List<UserLogin> list = userLoginService.
+				getUserByEmailAddress(user.getEmailAddress());
 		
-		if(applicant.getFirstName() == "" || applicant.getLastName() == "" 
-				|| applicant.getEmailAddress() == "" || applicant.getLogin().getPassword() == ""
-				|| !(applicant.getLogin().getPassword().equals(applicant.getLogin().getConfirmPassword())) 
+		if(user.getFirstName() == "" || user.getLastName() == "" 
+				|| user.getEmailAddress() == "" || user.getLogin().getPassword() == ""
+				|| !(user.getLogin().getPassword().equals(user.getLogin().getConfirmPassword())) 
 				|| list.size()>0) {
 			
-			if(applicant.getFirstName() == "") {
+			if(user.getFirstName() == "") {
 				errors.reject("firstName", "First name can not be blank!");
 			}
 			
-			if(applicant.getLastName() == "") {
+			if(user.getLastName() == "") {
 				errors.reject("lastName", "Last name can not be blank!");
 			}
 			
-			if(applicant.getEmailAddress() == "") {
+			if(user.getEmailAddress() == "") {
 				errors.reject("emailAddress", "Email address can not be blank!");
 			}
 			
-			if(applicant.getLogin().getPassword() == "") {
+			if(user.getLogin().getPassword() == "") {
 				errors.reject("login.password", "Password can not be blank!");
 			}
 			
-			if(!(applicant.getLogin().getPassword().equals(applicant.getLogin().getConfirmPassword()))) {
+			if(!(user.getLogin().getPassword().equals(user.getLogin().getConfirmPassword()))) {
 				errors.reject("login.confirmPassword","Password do not match!");
 			}
 			

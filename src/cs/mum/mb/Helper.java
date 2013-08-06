@@ -64,6 +64,7 @@ public class Helper {
 		Properties properties = System.getProperties();
 
 		// Setup mail server
+		properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.setProperty("mail.smtp.host", host);
 		properties.setProperty("mail.smtp.port", "587");

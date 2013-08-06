@@ -17,32 +17,31 @@ public class UserLoginDAO implements IUserLoginDAO {
 		this.sf = sf;
 	}
 
-	public void insert(UserLogin applicant) {
-		sf.getCurrentSession().saveOrUpdate(applicant);
+	public void insert(UserLogin user) {
+		sf.getCurrentSession().saveOrUpdate(user);
 	}
 
-	public List<UserLogin> getAllApplicantLogin() {
+	public List<UserLogin> getAllUserLogin() {
 
 		@SuppressWarnings("unchecked")
-		List<UserLogin> applicant = sf.getCurrentSession()
-				.createQuery("from ApplicantLogin").list();
+		List<UserLogin> user = sf.getCurrentSession()
+				.createQuery("from UserLogin").list();
 
-		return applicant;
+		return user;
 	}
 
 	@Override
-	public UserLogin getApplicationLoginById(long id) {
-		UserLogin applicant = (UserLogin) sf.getCurrentSession().get(
+	public UserLogin getUserLoginById(long id) {
+		UserLogin user = (UserLogin) sf.getCurrentSession().get(
 				User.class, id);
-		return applicant;
+		return user;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserLogin> getApplicantLoginByUsernamePassword(String userName,
-			String passWord) {
-		String sql="from ApplicantLogin l where l.userName=:username " +
-				"and l.password=MD5(:password) and l.applicant.status=1";
+	public List<UserLogin> getUserLoginByUsernamePassword(String userName, String passWord) {
+		String sql="from UserLogin l where l.userName=:username " +
+				"and l.password=MD5(:password) and l.user.status=1";
 		Query query=sf.getCurrentSession().createQuery(sql);
 		query.setParameter("username", userName);
 		query.setParameter("password", passWord);
@@ -52,16 +51,16 @@ public class UserLoginDAO implements IUserLoginDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserLogin> getApplicantByEmailAddress(String username) {
-		String sql = "FROM ApplicantLogin WHERE userName=:username";
+	public List<UserLogin> getUserByEmailAddress(String username) {
+		String sql = "FROM UserLogin WHERE userName=:username";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setParameter("username", username);
 		return query.list();
 	}
 
 	@Override
-	public UserLogin getApplicantLoginByCdatePassword(String cdate, String pwd) {
-		String sql = "FROM ApplicantLogin l WHERE password=:pwd";
+	public UserLogin getUserLoginByCdatePassword(String cdate, String pwd) {
+		String sql = "FROM UserLogin l WHERE password=:pwd";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setParameter("pwd", pwd);
 		return (UserLogin)query.uniqueResult();

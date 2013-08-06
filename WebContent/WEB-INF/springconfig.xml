@@ -13,43 +13,52 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<context:property-placeholder location="/WEB-INF/config.properties" />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"  autowire-candidate="true" autowire="byName">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost/coasdb"/>
 		<property name="username" value="root"/>
 		<property name="password" value=""/>
-	</bean>
+	</bean> -->
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="packagesToScan" value="cs.mum.model"/>
 		<property name="hibernateProperties">
 			<props>
-				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">1</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
 	</bean>
-	<bean id="applicantDao" class="cs.mum.dao.ApplicantDAO">
+	<bean id="userDao" class="cs.mum.dao.UserDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean id="applicantLoginDao" class="cs.mum.dao.ApplicantLoginDAO">
+	<bean id="userLoginDao" class="cs.mum.dao.UserLoginDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean id="applicantLoginService" class="cs.mum.services.ApplicantLoginService">
-		<property name="applicantLoginDAO" ref="applicantLoginDao" />
+	<bean id="userLoginService" class="cs.mum.services.UserLoginService">
+		<property name="userLoginDAO" ref="userLoginDao" />
+		<property name="help" ref="helper"/>
 	</bean>
-	<bean id="applicantService" class="cs.mum.services.ApplicantService">
-		<property name="applicantDao" ref="applicantDao"/>
+	<bean id="userService" class="cs.mum.services.UserService">
+		<property name="userDao" ref="userDao"/>
 	</bean>
 	
-	<bean id="applicantValidator" class="cs.mum.validation.ApplicantValidator">
-		<property name="applicantLoginService" ref="applicantLoginService"/>
+	<bean id="userValidator" class="cs.mum.validation.UserValidator">
+		<property name="userLoginService" ref="userLoginService"/>
 	</bean>
-	<bean id="loginValidator" class="cs.mum.validation.LoginValidator">
-		<property name="applicantLoginService" ref="applicantLoginService"/>
+	<bean id="userloginValidator" class="cs.mum.validation.UserLoginValidator">
+		<property name="userLoginService" ref="userLoginService"/>
 	</bean>
 	<bean id="helper" class="cs.mum.mb.Helper"></bean>
 

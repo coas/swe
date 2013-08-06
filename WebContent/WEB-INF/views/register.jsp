@@ -58,7 +58,7 @@
 	<section>
 			<h3>Register</h3>
 			<c:url var="registerUrl" value="register.html"/>
-			<form:form method="post" action="${registerUrl}" commandName="applicantBean">
+			<form:form method="post" action="${registerUrl}" commandName="userBean">
 				<form:errors path="*" cssClass="errorblock" element="div"></form:errors>
 				<p>
 					<form:label path="firstName">First Name:</form:label>

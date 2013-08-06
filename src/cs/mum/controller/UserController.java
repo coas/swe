@@ -6,6 +6,7 @@ import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,32 +20,41 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cs.mum.model.User;
 import cs.mum.model.UserLogin;
-import cs.mum.services.ApplicantLoginService;
-import cs.mum.services.ApplicantService;
-import cs.mum.validation.ApplicantValidator;
+import cs.mum.services.UserLoginService;
+import cs.mum.services.UserService;
+import cs.mum.validation.UserValidator;
 
 @Controller
 public class UserController {
 	@Autowired
-	private ApplicantService applicantService;
+	private UserService userService;
 	@Autowired
-	private ApplicantLoginService applicantLoginService;
+	private UserLoginService userLoginService;
 	@Autowired
-	ApplicantValidator applicantValidator;
+	UserValidator userValidator;
+	
+	@Value("${server.baseurl}")
+	private String baseUrlPath;
+	
+	@Value("${server.subject}")
+	private String subjectMail;
+	
+	@Value("${server.mailbody}")
+	private String bodyMail;
 	
 	@RequestMapping(value="/register.html")
-	public String registerApplicant(Model model) {
-		User applicant = new User();
-		model.addAttribute("applicantBean", applicant);
+	public String registerUser(Model model) {
+		User user = new User();
+		model.addAttribute("userBean", user);
 		return "register";
 	}
 	@RequestMapping(value="register.html", method=RequestMethod.POST)
-	public String registerApplicant(@ModelAttribute("applicantBean") User applicantBean, 
+	public String registerUser(@ModelAttribute("userBean") User userBean, 
 			BindingResult result,HttpServletRequest req, 
 			@RequestParam("recaptcha_challenge_field") String challenge,
 	        @RequestParam("recaptcha_response_field") String response,
 	        RedirectAttributes redirect) {
-		applicantValidator.validate(applicantBean, result);
+		userValidator.validate(userBean, result);
 		// Validate the reCAPTCHA
 	    String remoteAddr = req.getRemoteAddr();
 	    ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
@@ -58,7 +68,7 @@ public class UserController {
 	    
 	    if (!reCaptchaResponse.isValid()) {
 	        FieldError fieldError = new FieldError(
-	            "applicantBean",
+	            "userBean",
 	            "captcha",
 	            response,
 	            false,
@@ -70,7 +80,7 @@ public class UserController {
 	    
 	    // If there are errors, then validation fails.
 	    /*if (result.hasErrors()) {
-	        String path = applicantBean.getPagePath();
+	        String path = userBean.getPagePath();
 	        log.debug("Form validation error; forwarding to " + path);
 	        return "forward:" + path;
 	    }*/
@@ -78,23 +88,22 @@ public class UserController {
 		if(result.hasErrors()) {
 			return "register";
 		}else{
-			applicantService.insertApplicant(applicantBean);
+			userService.insertUser(userBean);
 			
-			UserLogin login = new UserLogin(applicantBean.getEmailAddress(),
-					applicantBean.getLogin().getPassword(), applicantBean.getLogin().getPassword(), applicantBean);
-			applicantLoginService.insertApplicantLogin(login);
-			redirect.addFlashAttribute("newAppMsg", "Successfull Registered, " +
-					"Go to your email for Account activation!");
+			UserLogin login = new UserLogin(userBean.getEmailAddress(),
+					userBean.getLogin().getPassword(), userBean.getLogin().getPassword(), userBean);
+			System.out.println("****** first test:"+baseUrlPath);
+			userLoginService.insertUserLogin(login,baseUrlPath,bodyMail,subjectMail);
 			return "redirect:/";
 		}
 	}
 	
 	@RequestMapping(value="/regVerification/{regverify}")
 	public String regmailVerification(@PathVariable String regverify) {
-		User applicant = applicantService.getApplicantByRegVerify(regverify);
-		applicant.setStatus(true);
-		applicant.setRegVerification("Y");
-		applicantService.updateApplicant(applicant);
+		User user = userService.getUserByRegVerify(regverify);
+		user.setStatus(true);
+		user.setRegVerification("Y");
+		userService.updateUser(user);
 		return "redirect:/";
 	}
 }

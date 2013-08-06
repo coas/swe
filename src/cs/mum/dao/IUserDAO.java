@@ -5,14 +5,12 @@ import java.util.List;
 import cs.mum.model.User;
 
 public interface IUserDAO {
-	public User getApplicationById(long id);
+	public List<User> getAllUser();
 
-	public List<User> getAllApplicant();
-
-	public void insert(User applicant);
+	public void insert(User user);
 	
-	public User getApplicantById(long id);
+	public User getUserById(long id);
 	
-	public User getApplicantByRegVerify(String regVerify);
+	public User getUserByRegVerify(String regVerify);
 	
 }

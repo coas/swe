@@ -14,18 +14,18 @@ public class UserLogin {
 	private String password;
 	private String confirmPassword;
 	private String newPassword;
-	private User applicant;
+	private User user;
 	
 	public UserLogin() {
 		
 	}
 
 	public UserLogin(String userName, String password,
-			String confirmPassword, User applicant) {
+			String confirmPassword, User user) {
 		this.userName = userName;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
-		this.applicant = applicant;
+		this.user = user;
 	}
 	
 	@Id
@@ -72,13 +72,13 @@ public class UserLogin {
 	}
 
 	@OneToOne
-	@JoinColumn(name="applicantId")
-	public User getApplicant() {
-		return applicant;
+	@JoinColumn(name="userId")
+	public User getUser() {
+		return user;
 	}
 
-	public void setApplicant(User applicant) {
-		this.applicant = applicant;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

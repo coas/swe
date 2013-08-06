@@ -32,7 +32,7 @@
 			
 			<p style="color:#264409; border-color:#C6D880; background:#E6EFC2; font-weight: bold;" 
 				align="center">${newAppMsg}</p>
-			<form:form method="post" action="logginApplication" commandName="applicantlogin">
+			<form:form method="post" action="logginUser" commandName="userlogin">
 				<form:errors path="*" cssClass="errorblock" element="div"></form:errors>
 				<c:url var="newRegUrl" value="/register.html"/>
 				<c:url var="recoverMyAccountdUrl" value="/recoverMyAccount"/>

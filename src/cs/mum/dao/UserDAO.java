@@ -15,34 +15,29 @@ public class UserDAO implements IUserDAO{
 		this.sf = sf;
 	}
 
-	public void insert(User applicant) {
-		sf.getCurrentSession().saveOrUpdate(applicant);
+	public void insert(User user) {
+		sf.getCurrentSession().saveOrUpdate(user);
 	}
 
-	public List<User> getAllApplicant() {
+	public List<User> getAllUser() {
 
 		@SuppressWarnings("unchecked")
-		List<User> applicant = sf.getCurrentSession()
-				.createQuery("from Applicant").list();
+		List<User> user = sf.getCurrentSession()
+				.createQuery("from User").list();
 
-		return applicant;
+		return user;
 	}
 
-	public User getApplicantById(long id) {
-		User applicant = (User) sf.getCurrentSession().get(
+	public User getUserById(long id) {
+		User user = (User) sf.getCurrentSession().get(
 				User.class, id);
-		return applicant;
+		return user;
 
 	}
 
 	@Override
-	public User getApplicationById(long id) {
-		return null;
-	}
-
-	@Override
-	public User getApplicantByRegVerify(String regVerify) {
-		String sql = "from Applicant where regVerification=:pregVerify";
+	public User getUserByRegVerify(String regVerify) {
+		String sql = "from User where regVerification=:pregVerify";
 		Query query = sf.getCurrentSession().createQuery(sql);
 		query.setParameter("pregVerify", regVerify);
 		return (User)query.uniqueResult();

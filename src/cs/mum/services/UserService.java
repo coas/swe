@@ -12,36 +12,36 @@ import cs.mum.dao.IUserDAO;
 import cs.mum.mb.Helper;
 import cs.mum.model.User;
 @Service
-public class ApplicantService {
+public class UserService {
 	@Autowired
-	private IUserDAO applicantDao;
+	private IUserDAO userDao;
 
-	public void setApplicantDao(IUserDAO applicantDao) {
-		this.applicantDao = applicantDao;
+	public void setUserDao(IUserDAO userDao) {
+		this.userDao = userDao;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true)
-	public List<User> getApplicants() {
-		return applicantDao.getAllApplicant();
+	public List<User> getUsers() {
+		return userDao.getAllUser();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public User getApplicantById(long id) {
-		return applicantDao.getApplicantById(id);
+	public User getuserById(long id) {
+		return userDao.getUserById(id);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void insertApplicant(User applicant) {
-		applicant.setCreationDate(new Date());
-		applicant.setRegVerification(Helper.md5((String.valueOf(applicant.getCreationDate()))));
-		applicantDao.insert(applicant);
+	public void insertUser(User user) {
+		user.setCreationDate(new Date());
+		user.setRegVerification(Helper.md5((String.valueOf(user.getCreationDate()))));
+		userDao.insert(user);
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void updateApplicant(User applicant) {
-		applicantDao.insert(applicant);
+	public void updateUser(User user) {
+		userDao.insert(user);
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public User getApplicantByRegVerify(String regVerify) {
-		return applicantDao.getApplicantByRegVerify(regVerify);
+	public User getUserByRegVerify(String regVerify) {
+		return userDao.getUserByRegVerify(regVerify);
 	}
 }
