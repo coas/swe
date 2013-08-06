@@ -2,6 +2,13 @@ package cs.mum.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table (name = "DatastractureValue", schema = "coasdb")
 public class DataStructureValue {
 
 	private int Id;
@@ -9,6 +16,7 @@ public class DataStructureValue {
 	private Date cDate;
 	private User cUser;
 	private String Status;
+	
 	public DataStructureValue(String description, Date cDate, User cUser,
 			String status) {
 		super();
@@ -17,6 +25,10 @@ public class DataStructureValue {
 		this.cUser = cUser;
 		Status = status;
 	}
+	
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public int getId() {
 		return Id;
 	}

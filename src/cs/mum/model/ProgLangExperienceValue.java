@@ -1,5 +1,14 @@
 package cs.mum.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (schema = "coasdb")
 public class ProgLangExperienceValue {
 
 	private long Id;
@@ -8,21 +17,23 @@ public class ProgLangExperienceValue {
 	
 	
 	public ProgLangExperienceValue(String description) {
-		super();
+		
 		this.description = description;
 	}
 
 
-
+	@Id
+	@GeneratedValue
+	@Column (name ="id")
 	public long getId() {
 		return Id;
 	}
 
 
 
-	public void setId(long id) {
+	/*public void setId(long id) {
 		Id = id;
-	}
+	}*/
 
 
 
