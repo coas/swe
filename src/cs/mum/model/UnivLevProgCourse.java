@@ -3,11 +3,11 @@ package cs.mum.model;
 public class UnivLevProgCourse {
 
 	private long Id;
-	private ProgramingLanguage programingLang;
+	private ProgrammingLanguage programingLang;
 	private String notOnlistProgramingLanguage;
 	private String courseTitle;
 	private int year;
-	public UnivLevProgCourse(ProgramingLanguage programingLang,
+	public UnivLevProgCourse(ProgrammingLanguage programingLang,
 			String notOnlistProgramingLanguage, String courseTitle, int year) {
 		super();
 		this.programingLang = programingLang;
@@ -21,10 +21,10 @@ public class UnivLevProgCourse {
 	public void setId(long id) {
 		Id = id;
 	}
-	public ProgramingLanguage getProgramingLang() {
+	public ProgrammingLanguage getProgramingLang() {
 		return programingLang;
 	}
-	public void setProgramingLang(ProgramingLanguage programingLang) {
+	public void setProgramingLang(ProgrammingLanguage programingLang) {
 		this.programingLang = programingLang;
 	}
 	public String getNotOnlistProgramingLanguage() {

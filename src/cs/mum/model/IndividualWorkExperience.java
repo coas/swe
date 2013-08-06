@@ -3,7 +3,7 @@ package cs.mum.model;
 public class IndividualWorkExperience {
 
 	private int id;
-	private ProgramingLanguage programingLang ;
+	private ProgrammingLanguage programingLang ;
 	private String notOnListProgramingLang;
 	private int duration;
 	private int year;
@@ -12,7 +12,7 @@ public class IndividualWorkExperience {
 	
 	
 	
-	public IndividualWorkExperience(ProgramingLanguage programingLang,
+	public IndividualWorkExperience(ProgrammingLanguage programingLang,
 			String notOnListProgramingLang, int duration, int year,
 			String projectDescription) {
 		super();
@@ -30,10 +30,10 @@ public class IndividualWorkExperience {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public ProgramingLanguage getProgramingLang() {
+	public ProgrammingLanguage getProgramingLang() {
 		return programingLang;
 	}
-	public void setProgramingLang(ProgramingLanguage programingLang) {
+	public void setProgramingLang(ProgrammingLanguage programingLang) {
 		this.programingLang = programingLang;
 	}
 	public String getNotOnListProgramingLang() {

@@ -3,11 +3,10 @@ package cs.mum.model;
 public class ProgramingSkillLevel {
 
 	private long Id;
-	private ProgramingLanguage programingLanguage;
-	private ProgramingExprienceValue knowdlageLevel;
-	public ProgramingSkillLevel(ProgramingLanguage programingLanguage,
-			ProgramingExprienceValue knowdlageLevel) {
-		super();
+	private ProgrammingLanguage programingLanguage;
+	private ProgLangExperienceValue knowdlageLevel;
+	public ProgramingSkillLevel(ProgrammingLanguage programingLanguage,
+			ProgLangExperienceValue knowdlageLevel) {
 		this.programingLanguage = programingLanguage;
 		this.knowdlageLevel = knowdlageLevel;
 	}
@@ -17,16 +16,16 @@ public class ProgramingSkillLevel {
 	public void setId(long id) {
 		Id = id;
 	}
-	public ProgramingLanguage getProgramingLanguage() {
+	public ProgrammingLanguage getProgramingLanguage() {
 		return programingLanguage;
 	}
-	public void setProgramingLanguage(ProgramingLanguage programingLanguage) {
+	public void setProgramingLanguage(ProgrammingLanguage programingLanguage) {
 		this.programingLanguage = programingLanguage;
 	}
-	public ProgramingExprienceValue getKnowdlageLevel() {
+	public ProgLangExperienceValue getKnowdlageLevel() {
 		return knowdlageLevel;
 	}
-	public void setKnowdlageLevel(ProgramingExprienceValue knowdlageLevel) {
+	public void setKnowdlageLevel(ProgLangExperienceValue knowdlageLevel) {
 		this.knowdlageLevel = knowdlageLevel;
 	}
 	
