@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 @Entity 
 public class EnglishProficiency extends Section {
+	
 	private String readAndWrite;
 	private String spokenEnglish;
 	private String understandSpokenEnglish;
@@ -14,6 +15,7 @@ public class EnglishProficiency extends Section {
 	private double greVerbalScorePercentile;
 	private double greQuantitativeScore;
 	private double greQuantitativeScorePercentile;
+	 
 	
 	
 	public EnglishProficiency(String readAndWrite, String spokenEnglish,
@@ -35,6 +37,7 @@ public class EnglishProficiency extends Section {
 	public EnglishProficiency() {
 	
 	}
+	
 	public String getReadAndWrite() {
 		return readAndWrite;
 	}

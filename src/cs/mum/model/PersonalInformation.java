@@ -3,55 +3,47 @@ package cs.mum.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PersonalInformation extends Section {
-	private long id;
 	private String sex;
 	private String maritalStatus;
 	private Country countryOfCitizenship;
-	private Country counryOfBirth;
-	private String notOnListOfcountryOfCitizenship;
-	private String notOnListOfcountryOfBirth;
+	private Country countryOfBirth;
+	private String notOnListOfCountryOfCitizenship;
+	private String notOnListOfCountryOfBirth;
 	private Date DateOfBirth;
 	private String skypeId;
 	private String phoneNumber;
 	private String cityLivingNow;
-	private Country countrylivingNow;
+	private Country countryLivingNow;
 	private String notOnListOfCountryLivingNow;
+	
 	
 	
 	public PersonalInformation() {
 	
 	}
 	public PersonalInformation(String sex, String maritalStatus,
-			Country countryOfCitizenship, Country counryOfBirth,
-			String notOnListOfcountryOfCitizenship,
-			String notOnListOfcountryOfBirth, Date dateOfBirth, String skypeId,
-			String phoneNumber, String cityLivingNow, Country countrylivingNow,
+			Country countryOfCitizenship, Country countryOfBirth,
+			String notOnListOfCountryOfCitizenship,
+			String notOnListOfCountryOfBirth, Date dateOfBirth, String skypeId,
+			String phoneNumber, String cityLivingNow, Country countryLivingNow,
 			String notOnListOfCountryLivingNow) {
 		this.sex = sex;
 		this.maritalStatus = maritalStatus;
 		this.countryOfCitizenship = countryOfCitizenship;
-		this.counryOfBirth = counryOfBirth;
-		this.notOnListOfcountryOfCitizenship = notOnListOfcountryOfCitizenship;
-		this.notOnListOfcountryOfBirth = notOnListOfcountryOfBirth;
+		this.countryOfBirth = countryOfBirth;
+		this.notOnListOfCountryOfCitizenship = notOnListOfCountryOfCitizenship;
+		this.notOnListOfCountryOfBirth = notOnListOfCountryOfBirth;
 		DateOfBirth = dateOfBirth;
 		this.skypeId = skypeId;
 		this.phoneNumber = phoneNumber;
 		this.cityLivingNow = cityLivingNow;
-		this.countrylivingNow = countrylivingNow;
+		this.countryLivingNow = countryLivingNow;
 		this.notOnListOfCountryLivingNow = notOnListOfCountryLivingNow;
-	}
-	@Id
-	@GeneratedValue
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	public String getSex() {
 		return sex;
@@ -65,30 +57,34 @@ public class PersonalInformation extends Section {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
+	@ManyToOne
+	@JoinColumn(name="countryOfCitizenship")
 	public Country getCountryOfCitizenship() {
 		return countryOfCitizenship;
 	}
 	public void setCountryOfCitizenship(Country countryOfCitizenship) {
 		this.countryOfCitizenship = countryOfCitizenship;
 	}
-	public Country getCounryOfBirth() {
-		return counryOfBirth;
+	@ManyToOne
+	@JoinColumn(name="countryOfBirth")
+	public Country getCountryOfBirth() {
+		return countryOfBirth;
 	}
-	public void setCounryOfBirth(Country counryOfBirth) {
-		this.counryOfBirth = counryOfBirth;
+	public void setCountryOfBirth(Country countryOfBirth) {
+		this.countryOfBirth = countryOfBirth;
 	}
-	public String getNotOnListOfcountryOfCitizenship() {
-		return notOnListOfcountryOfCitizenship;
+	public String getNotOnListOfCountryOfCitizenship() {
+		return notOnListOfCountryOfCitizenship;
 	}
-	public void setNotOnListOfcountryOfCitizenship(
-			String notOnListOfcountryOfCitizenship) {
-		this.notOnListOfcountryOfCitizenship = notOnListOfcountryOfCitizenship;
+	public void setNotOnListOfCountryOfCitizenship(
+			String notOnListOfCountryOfCitizenship) {
+		this.notOnListOfCountryOfCitizenship = notOnListOfCountryOfCitizenship;
 	}
-	public String getNotOnListOfcountryOfBirth() {
-		return notOnListOfcountryOfBirth;
+	public String getNotOnListOfCountryOfBirth() {
+		return notOnListOfCountryOfBirth;
 	}
-	public void setNotOnListOfcountryOfBirth(String notOnListOfcountryOfBirth) {
-		this.notOnListOfcountryOfBirth = notOnListOfcountryOfBirth;
+	public void setNotOnListOfCountryOfBirth(String notOnListOfcountryOfBirth) {
+		this.notOnListOfCountryOfBirth = notOnListOfcountryOfBirth;
 	}
 	public Date getDateOfBirth() {
 		return DateOfBirth;
@@ -114,11 +110,13 @@ public class PersonalInformation extends Section {
 	public void setCityLivingNow(String cityLivingNow) {
 		this.cityLivingNow = cityLivingNow;
 	}
-	public Country getCountrylivingNow() {
-		return countrylivingNow;
+	@ManyToOne
+	@JoinColumn(name="countryLivingNow")
+	public Country getCountryLivingNow() {
+		return countryLivingNow;
 	}
-	public void setCountrylivingNow(Country countrylivingNow) {
-		this.countrylivingNow = countrylivingNow;
+	public void setCountryLivingNow(Country countryLivingNow) {
+		this.countryLivingNow = countryLivingNow;
 	}
 	public String getNotOnListOfCountryLivingNow() {
 		return notOnListOfCountryLivingNow;
@@ -128,7 +126,4 @@ public class PersonalInformation extends Section {
 	}
 	
 	
-	
-	
-
 }

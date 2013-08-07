@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table (name = "DatastractureValue", schema = "coasdb")
@@ -47,6 +49,8 @@ public class DataStructureValue {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
+	@ManyToOne
+	@JoinColumn(name="cuser")
 	public User getcUser() {
 		return cUser;
 	}

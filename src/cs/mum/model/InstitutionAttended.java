@@ -2,10 +2,11 @@ package cs.mum.model;
 
 import java.util.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class InstitutionAttended {
@@ -17,6 +18,7 @@ public class InstitutionAttended {
 	private String degreeGranted;
 	private String subjectArea;
 	private double gpa;
+	private Date cDate;
 	private EducationalHistory educationalHistory;
 	
 	
@@ -26,7 +28,7 @@ public class InstitutionAttended {
 	public InstitutionAttended(String institutionName, String location,
 			Date dateFrom, Date dateTo, String degreeGranted,
 			String subjectArea, double gpa,
-			EducationalHistory educationalHistory) {
+			EducationalHistory educationalHistory, Date cdate) {
 		InstitutionName = institutionName;
 		this.location = location;
 		this.dateFrom = dateFrom;
@@ -35,6 +37,7 @@ public class InstitutionAttended {
 		this.subjectArea = subjectArea;
 		this.gpa = gpa;
 		this.educationalHistory = educationalHistory;
+		this.cDate=cdate;
 	}
 	@Id
 	@GeneratedValue
@@ -44,6 +47,8 @@ public class InstitutionAttended {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	
 	public String getInstitutionName() {
 		return InstitutionName;
 	}
@@ -86,12 +91,22 @@ public class InstitutionAttended {
 	public void setGpa(double gpa) {
 		this.gpa = gpa;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="educationHistory")
 	public EducationalHistory getEducationalHistory() {
 		return educationalHistory;
 	}
 	public void setEducationalHistory(EducationalHistory educationalHistory) {
 		this.educationalHistory = educationalHistory;
 	}
+	public Date getcDate() {
+		return cDate;
+	}
+	public void setcDate(Date cDate) {
+		this.cDate = cDate;
+	}
+	
 	
 	
 

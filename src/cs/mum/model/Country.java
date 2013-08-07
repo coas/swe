@@ -5,24 +5,28 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Country {
 	private long id;
 	private String description;
-	private Date date;
+	private Date cdate;
 	private String status;
-	private User user;
+	private User cuser;
 	
 	
 	public Country() {
 		
 	}
-	public Country(String description, Date date, String status, User user) {
+	public Country(String description, Date cdate, String status, User user) {
 		this.description = description;
-		this.date = date;
+		this.cdate = cdate;
 		this.status = status;
-		this.user = user;
+		this.cuser = user;
 	}
 	@Id
 	@GeneratedValue
@@ -38,11 +42,12 @@ public class Country {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDate() {
-		return date;
+	@Temporal(TemporalType.DATE)
+	public Date getCdate() {
+		return cdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
 	}
 	public String getStatus() {
 		return status;
@@ -50,13 +55,12 @@ public class Country {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public User getUser() {
-		return user;
+	@ManyToOne
+	@JoinColumn(name="cuser")
+	public User getCuser() {
+		return cuser;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setCuser(User cuser) {
+		this.cuser = cuser;
 	}
-	
-	
-
 }

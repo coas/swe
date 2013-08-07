@@ -1,13 +1,16 @@
 package cs.mum.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class EducationalHistory extends Section {
-	private long id;
-	private char hSchoolStatus;
+	
+	private char hiSchoolStatus;
 	private int hDAYear;
 	private String hDAField;
 	private String notOnListDAField;
@@ -18,6 +21,7 @@ public class EducationalHistory extends Section {
 	private double degreeGPA;
 	private int totalYear;
 	private int totalMonth;
+	private List<InstitutionAttended> institutioAttended;
 	
 	
 	public EducationalHistory() {
@@ -28,7 +32,7 @@ public class EducationalHistory extends Section {
 			Country countryDegreeGranted, String notOnListCountryDegreeGranted,
 			String gradingScaleUsed, double degreeGPA, int totalYear,
 			int totalMonth) {
-		this.hSchoolStatus = hSchoolStatus;
+		this.hiSchoolStatus = hSchoolStatus;
 		this.hDAYear = hDAYear;
 		this.hDAField = hDAField;
 		this.notOnListDAField = notOnListDAField;
@@ -40,19 +44,12 @@ public class EducationalHistory extends Section {
 		this.totalYear = totalYear;
 		this.totalMonth = totalMonth;
 	}
-	@Id
-	@GeneratedValue
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public char gethSchoolStatus() {
-		return hSchoolStatus;
+		return hiSchoolStatus;
 	}
 	public void sethSchoolStatus(char hSchoolStatus) {
-		this.hSchoolStatus = hSchoolStatus;
+		this.hiSchoolStatus = hSchoolStatus;
 	}
 	public int gethDAYear() {
 		return hDAYear;
@@ -78,6 +75,8 @@ public class EducationalHistory extends Section {
 	public void setNotOnListDADegree(String notOnListDADegree) {
 		this.notOnListDADegree = notOnListDADegree;
 	}
+	@ManyToOne
+	@JoinColumn(name="countryDegreeGranted")
 	public Country getCountryDegreeGranted() {
 		return countryDegreeGranted;
 	}
@@ -114,6 +113,14 @@ public class EducationalHistory extends Section {
 	}
 	public void setTotalMonth(int totalMonth) {
 		this.totalMonth = totalMonth;
+	}
+	
+	@OneToMany(mappedBy="educationalHistory")
+	public List<InstitutionAttended> getInstitutioAttended() {
+		return institutioAttended;
+	}
+	public void setInstitutioAttended(List<InstitutionAttended> institutioAttended) {
+		this.institutioAttended = institutioAttended;
 	}
 	
 	

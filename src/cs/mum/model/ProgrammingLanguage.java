@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import cs.mum.model.User;
@@ -21,9 +23,6 @@ public class ProgrammingLanguage {
 	private Date cDate;
 	private User cUser;
 	private String status;
-	
-	
-	
 	
 	public ProgrammingLanguage(String discription, Date cDate, User cUser,
 			String status) {
@@ -55,6 +54,8 @@ public class ProgrammingLanguage {
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
+	@ManyToOne
+	@JoinColumn(name="cuser")
 	public User getcUser() {
 		return cUser;
 	}

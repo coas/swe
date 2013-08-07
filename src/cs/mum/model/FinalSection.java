@@ -1,12 +1,9 @@
 package cs.mum.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class FinalSection extends Section {
-	private long id;
 	private String programType;
 	private String targetEntry;
 	private String hearAboutUs;
@@ -15,9 +12,11 @@ public class FinalSection extends Section {
 	private String signature;
 	
 	
+	
 	public FinalSection() {
 		
 	}
+	
 	public FinalSection(String programType, String targetEntry,
 			String hearAboutUs, String notOnhearAboutUs, String agentCode,
 			String signature) {
@@ -27,15 +26,9 @@ public class FinalSection extends Section {
 		this.notOnhearAboutUs = notOnhearAboutUs;
 		this.agentCode = agentCode;
 		this.signature = signature;
+		
 	}
-	@Id
-	@GeneratedValue
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public String getProgramType() {
 		return programType;
 	}
@@ -74,5 +67,5 @@ public class FinalSection extends Section {
 	}
 	
 	
-
+	
 }

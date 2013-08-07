@@ -31,9 +31,9 @@ public class ProgLangExperienceValue {
 
 
 
-	/*public void setId(long id) {
+	public void setId(long id) {
 		Id = id;
-	}*/
+	}
 
 
 
