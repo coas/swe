@@ -4,7 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-<title>Blue Developer Directory</title>
+<title>Compro on-Line Application System</title>
 <style>
 .error {
 	color: #ff0000;

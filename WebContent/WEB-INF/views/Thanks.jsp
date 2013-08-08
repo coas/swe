@@ -40,8 +40,9 @@
 		<nav id="menu">
 			<ul>
 				<c:url var="changePasswordUrl" value="/changePassword" />
-				<li class="menuitem"><a href="${changePasswordUrl}">Change
-						Password</a></li>
+				<c:url var="applicationUrl" value="/application"/>
+				<li class="menuitem"><a href="${changePasswordUrl}">Change Password</a></li>
+				<li class="menuitem"><a href="${applicationUrl}">Application</a></li>
 			</ul>
 		</nav>
 		<!--menu end-->
