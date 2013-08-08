@@ -14,7 +14,6 @@ import cs.mum.model.UserLogin;
 public class UserLoginService {
 	@Autowired
 	private IUserLoginDAO userLoginDAO;
-	private static final String regMailSubj = "Compro on-Line Application Verification";
 	@Autowired
 	private Helper help;
 
