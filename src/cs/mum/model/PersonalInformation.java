@@ -22,7 +22,6 @@ public class PersonalInformation extends Section {
 	private String notOnListOfCountryLivingNow;
 	
 	
-	
 	public PersonalInformation() {
 	
 	}

@@ -2,7 +2,7 @@ package cs.mum.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,109 +33,141 @@ public class UserLoginController {
 	UserLoginValidator userLoginValidate;
 	@Autowired
 	private Helper helper;
-	
+
 	@RequestMapping(value = "/")
-	public String login(@ModelAttribute("userlogin") UserLogin userLogin,BindingResult result) {
+	public String login(@ModelAttribute("userlogin") UserLogin userLogin,
+			BindingResult result) {
 		return "login";
 	}
 
 	@RequestMapping(value = "/logginUser", method = RequestMethod.POST)
-	public String login(@ModelAttribute("userlogin") UserLogin userLogin,BindingResult result,
-			Model model,HttpServletRequest request) {
+	public String login(@ModelAttribute("userlogin") UserLogin userLogin,
+			BindingResult result, Model model, HttpSession session) {
 		userLoginValidate.validate(userLogin, result);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "login";
-		}else{
+		} else {
 			boolean flag = false;
 			String displayPage = "";
-	
+
 			List<UserLogin> myList = userLoginService
-					.getUserLoginByUsernamePwd(userLogin.getUserName(), userLogin.getPassword());
+					.getUserLoginByUsernamePwd(userLogin.getUserName(),
+							userLogin.getPassword());
 			model.addAttribute("login", flag);
-			if (myList.size() > 0) {
+			if (myList.size() > 0 && myList.size() <= 1) {
 				flag = true;
 				model.addAttribute("email", userLogin.getUserName());
+				/**
+				 * this section is to keep the session for our users
+				 */
+				for (UserLogin e : myList) {
+
+					session.setAttribute("userType", e.getUserType());
+					session.setAttribute("username", e.getUserName());
+				}
+
 				displayPage = "Thanks";// we're supposed to return the menus
+
 			} else {
 				flag = false;
 				displayPage = "login";// if the login failed
 			}
-	
+
 			return displayPage;
 		}
 
 	}
-	
-	@RequestMapping(value="/doLogout")
-	public String doLogout(SessionStatus sessionStatus) {
-		//controll the session
+
+	@RequestMapping(value = "/doLogout")
+	public String doLogout(SessionStatus sessionStatus,HttpSession session) {
+		/**
+		 * change
+		 */
+		session.removeAttribute("userType");
+		session.removeAttribute("username");
+		/**
+		 * end
+		 */
 		sessionStatus.setComplete();
+		
 		return "redirect:/";
 	}
-	
-	@RequestMapping(value="/recoverMyAccount")
-	public String recoverMyAccount(@ModelAttribute("recoverAccount") UserLogin userLogin,
+
+	@RequestMapping(value = "/recoverMyAccount")
+	public String recoverMyAccount(
+			@ModelAttribute("recoverAccount") UserLogin userLogin,
 			BindingResult result) {
 		return "recoverMyAccount";
 	}
-	@RequestMapping(value="/recoverMyAccount", method=RequestMethod.POST)
-	public String recoverMyaccount(@ModelAttribute("recoverAccount") UserLogin userLogin,
+
+	@RequestMapping(value = "/recoverMyAccount", method = RequestMethod.POST)
+	public String recoverMyaccount(
+			@ModelAttribute("recoverAccount") UserLogin userLogin,
 			BindingResult result) {
 		userLoginValidate.validateRecoverAccount(userLogin, result);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "recoverMyAccount";
-		}else{
+		} else {
 			String pwd = Helper.randomAlphaNumeric(9);
-			List<UserLogin> login =userLoginService.
-					getUserByEmailAddress(userLogin.getUserName());
+			List<UserLogin> login = userLoginService
+					.getUserByEmailAddress(userLogin.getUserName());
 			UserLogin pLogin = login.get(0);
 			pLogin.setPassword(Helper.md5(pwd));
 			userLoginService.updateUserLogin(pLogin);
-			String mailBody = "Dear "+userLogin.getUserName();
-				   mailBody+= "\n\n You have requested for Account Recovery service,";
-				   mailBody+= ", \n\n Use the following password to Login into your Account: ";
-				   mailBody+= pwd;
-				   mailBody+= " If you are not aware with this request Please, ";
-				   mailBody+= "\n ckick the Link below to Lock your account";
-				   mailBody+= "\n\n";
-				   mailBody+= " http://localhost:8080/coas/";
-				   mailBody+= "suspiciousLock/";
-				   mailBody+= Helper.md5(String.valueOf(pLogin.getUser().getCreationDate()));
-				   mailBody+= "/"+Helper.md5(pwd)+"/";
-				   mailBody += "\n\n****************************************************************";
-				   mailBody+= "\n\n Thanks\n\n http://www.mum.edu";
-			helper.sendMail(userLogin.getUserName(), mailBody, "Account Recovery");
+			String mailBody = "Dear " + userLogin.getUserName();
+			mailBody += "\n\n You have requested for Account Recovery service,";
+			mailBody += ", \n\n Use the following password to Login into your Account: ";
+			mailBody += pwd;
+			mailBody += " If you are not aware with this request Please, ";
+			mailBody += "\n ckick the Link below to Lock your account";
+			mailBody += "\n\n";
+			mailBody += " http://localhost:8080/coas/";
+			mailBody += "suspiciousLock/";
+			mailBody += Helper.md5(String.valueOf(pLogin.getUser()
+					.getCreationDate()));
+			mailBody += "/" + Helper.md5(pwd) + "/";
+			mailBody += "\n\n****************************************************************";
+			mailBody += "\n\n Thanks\n\n http://www.mum.edu";
+			helper.sendMail(userLogin.getUserName(), mailBody,
+					"Account Recovery");
 			return "redirect:/";
 		}
 	}
-	@RequestMapping(value="/changePassword")
-	public String changePassword(@ModelAttribute("changePassword") UserLogin userLogin,
+
+	@RequestMapping(value = "/changePassword")
+	public String changePassword(
+			@ModelAttribute("changePassword") UserLogin userLogin,
 			BindingResult result) {
 		return "changePassword";
 	}
-	
-	@RequestMapping(value="/changePassword", method=RequestMethod.POST)
-	public String changePassword(@ModelAttribute("changePassword") UserLogin userLogin, 
-			BindingResult result,@ModelAttribute("email") String email) {
+
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePassword(
+			@ModelAttribute("changePassword") UserLogin userLogin,
+			BindingResult result, @ModelAttribute("email") String email) {
 		userLoginValidate.validateChangePassword(userLogin, result, email);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "changePassword";
-		}else{
-			List<UserLogin> list = userLoginService.getUserByEmailAddress(email);
+		} else {
+			List<UserLogin> list = userLoginService
+					.getUserByEmailAddress(email);
 			UserLogin login = list.get(0);
 			login.setPassword(Helper.md5(userLogin.getNewPassword()));
 			userLoginService.updateUserLogin(login);
 			return "redirect:/";
 		}
 	}
-	
-	@RequestMapping(value="/suspiciousLock/{option}/{pwd}/")
-	//option variable is the MD5() for creation date
-	public String suspiciousLock(@PathVariable String option, @PathVariable String pwd) {
-		UserLogin userLogin = userLoginService.getUserLoginByCdatePassword(option, pwd);
+
+	@RequestMapping(value = "/suspiciousLock/{option}/{pwd}/")
+	// option variable is the MD5() for creation date
+	public String suspiciousLock(@PathVariable String option,
+			@PathVariable String pwd) {
+		UserLogin userLogin = userLoginService.getUserLoginByCdatePassword(
+				option, pwd);
 		User user = userLogin.getUser();
 		user.setStatus(false);
 		userService.updateUser(user);
 		return "redirect:/";
 	}
+
 }
