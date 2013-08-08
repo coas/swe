@@ -138,9 +138,8 @@
 								<form:select path="countryOfCitizenship.description"
 									id="countryOfCitizenship">
 									<form:option value="0">Select a Country</form:option>
-									<form:option value="-1">Not on List</form:option>
-									<form:options itemLabel="countryOfCitizenship.description"
-										itemValue="countryOfCitizenship.id" items="${countries}" />
+									<form:options itemLabel="description"
+										itemValue="id" items="${countries}" />
 								</form:select>
 							</p>
 
@@ -157,9 +156,8 @@
 								<form:select path="countryOfBirth.description"
 									id="countryOfBirth">
 									<form:option value="0">Select a Country</form:option>
-									<form:option value="-1">Not on List</form:option>
-									<form:options itemLabel="countryOfBirth.description"
-										itemValue="countryOfBirth.id" items="${countries}" />
+									<form:options itemLabel="description"
+										itemValue="id" items="${countries}" />
 								</form:select>
 							</p>
 
@@ -215,9 +213,8 @@
 								<form:select path="countryLivingNow.description"
 									id="countryLivingNow">
 									<form:option value="0">Select a Country</form:option>
-									<form:option value="-1">Not on List</form:option>
-									<form:options itemLabel="countryLivingNow.description"
-										itemValue="countryLivingNow.id" items="${countries}" />
+									<form:options itemLabel="description"
+										itemValue="id" items="${countries}" />
 								</form:select>
 							</p>
 
@@ -242,7 +239,7 @@
 					<c:url var="finalSection" value="finalSection" />
 					<form:form action="${finalSectionUrl}" method="POST"
 						commandName="finalSection">
-						<fieldset>
+						<fieldset id="finalSection_1">
 							<legend>MS Program</legend>
 							<p>
 								<!-- RG - means Regular program -->
@@ -271,7 +268,7 @@
 									outside of the US. (No F-1 visa, no entry to the US)</form:label>
 							</p>
 						</fieldset>
-						<fieldset>
+						<fieldset id="finalSection_2">
 							<legend>How Did You Learn About the Program? </legend>
 							<span>MUM Agent</span>
 							<p style="font-style: italic;">
@@ -297,7 +294,7 @@
 							<p>
 								<form:label path="hearAboutUs">Other Source </form:label>
 								<form:select path="hearAboutUs">
-									<form:option value="">Select Entry	</form:option>
+									<form:option value="">Select</form:option>
 									<form:options items="${hearAboutUs}"/>
 								</form:select>	
 						
@@ -310,6 +307,9 @@
 							</p>
 							
 						</fieldset>
+						<p>
+							<input type="submit" value="Submit Application">
+						</p>
 					</form:form>
 				</div>
 			</div>

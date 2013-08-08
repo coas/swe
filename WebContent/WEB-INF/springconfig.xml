@@ -33,7 +33,7 @@
 		<property name="packagesToScan" value="cs.mum.model"/>
 		<property name="hibernateProperties">
 			<props>
-				 <prop key="hibernate.hbm2ddl.auto">create</prop> 
+				<!--  <prop key="hibernate.hbm2ddl.auto">create</prop> --> 
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">1</prop>
 				<prop key="hibernate.show_sql">true</prop>
@@ -53,7 +53,19 @@
 	<bean id="userService" class="cs.mum.services.UserService">
 		<property name="userDao" ref="userDao"/>
 	</bean>
+	<bean id="countryDao" class="cs.mum.dao.CountryDAO">
+		<property name="sf" ref="sessionFactory"/>
+	</bean>
+	<bean id="countryService" class="cs.mum.services.CountryService">
+		<property name="countryDAO" ref="countryDao"/>
+	</bean>
 	
+	<bean id="targetEntryDao" class="cs.mum.dao.TargetEntryDAO">
+		<property name="sf" ref="sessionFactory"/>
+	</bean>
+	<bean id="targetEntryService" class="cs.mum.services.TargetEntryService">
+		<property name="targetEntryDAO" ref="targetEntryDao"/>
+	</bean>
 	
 	
 	<bean id="applicationDao" class="cs.mum.dao.UserDAO">
