@@ -30,7 +30,7 @@ public class CountryDAO implements ICountryDAO {
 
 		@SuppressWarnings("unchecked")
 		List<Country> country = sf.getCurrentSession()
-				.createQuery("from User").list();
+				.createQuery("from Country order by description").list();
 
 		return country;
 	}
