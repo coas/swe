@@ -14,7 +14,8 @@ import cs.mum.model.PersonalInformation;
 public class ApplicationController {
 	@RequestMapping(value="/application")
 	public String application(@ModelAttribute("personalApplication") PersonalInformation personalInformation,
-			BindingResult result) {
+			BindingResult resultPersonalInfo,
+			@ModelAttribute("finalSection") FinalSection finalSection, BindingResult resultFinalSection) {
 		return "application";
 	}
 	
@@ -22,12 +23,5 @@ public class ApplicationController {
 	public String personalInformation(Model model) {
 		return "application";
 	}
-	
-	@RequestMapping(value="/finalSection")
-	public String finalSection(@ModelAttribute("finalSection") FinalSection finalSection,
-			BindingResult result) {
-		return "application";
-	}
-	
 	
 }
