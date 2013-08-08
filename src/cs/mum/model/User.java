@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table (name = "user", schema = "coasdb")
@@ -17,6 +18,7 @@ public class User {
 	private String middleName;
 	private String lastName;
 	private String emailAddress;
+	private String confirmEmail;
 	private boolean status;
 	private Date creationDate;
 	private UserLogin login;
@@ -99,5 +101,13 @@ public class User {
 
 	public void setRegVerification(String regVerification) {
 		this.regVerification = regVerification;
+	}
+	@Transient
+	public String getConfirmEmail() {
+		return confirmEmail;
+	}
+
+	public void setConfirmEmail(String confirmEmail) {
+		this.confirmEmail = confirmEmail;
 	}
 }

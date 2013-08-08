@@ -15,16 +15,20 @@ public class UserLogin {
 	private String confirmPassword;
 	private String newPassword;
 	private User user;
+	private String userType;
 	
+	
+
 	public UserLogin() {
 		
 	}
 
 	public UserLogin(String userName, String password,
-			String confirmPassword, User user) {
+			String confirmPassword,String userType, User user) {
 		this.userName = userName;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
+		this.userType=userType;
 		this.user = user;
 	}
 	
@@ -37,11 +41,18 @@ public class UserLogin {
 	public String getUserName() {
 		return userName;
 	}
-
+	public String getUserType() {
+		return userType;
+	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -80,5 +91,6 @@ public class UserLogin {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	
 }

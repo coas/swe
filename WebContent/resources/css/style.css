@@ -59,7 +59,7 @@ p{
 
 label{
 	display:inline-block;
-	width:150px;
+	width:350px;
 }
 
 /* Main styles */
@@ -163,7 +163,7 @@ header h3 span.white-text{
 
 section{
 	display:block;
-	width:680px;
+	width:900px;
 	margin-top:15px;
 	float:left;
 	background:#ffffff;

@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate">
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernatLibrary">
+
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/springLiberary"/>
-	<classpathentry kind="lib" path="C:/_springHibernate/StudentMaterials/libraries/javaMail/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/_springHibernate/StudentMaterials/libraries/javaMail/mail.jar"/>
-	<classpathentry kind="lib" path="C:/_springHibernate/StudentMaterials/libraries/jstl/javax.servlet.jsp.jstl-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/_springHibernate/StudentMaterials/libraries/jstl/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/_springHibernate/StudentMaterials/libraries/recaptcha/recaptcha4j-0.0.7.jar"/>
-	<classpathentry kind="lib" path="D:/mum documments/EA material/StudentMaterials/apache-tomcat-7.0.37/webapps/examples/WEB-INF/lib/jstl.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
+
 	<classpathentry kind="lib" path="D:/mum documments/EA material/StudentMaterials/apache-tomcat-7.0.37/webapps/examples/WEB-INF/lib/standard.jar">
+
+	
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="D:/mum documments/EA material/StudentMaterials/libraries/librariesForSWE/mail.jar">
+
+	
+
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="D:/mum documments/EA material/StudentMaterials/libraries/librariesForSWE/mailapi-1.4.3-rc1.jar">
+
+	<
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="D:/mum documments/EA material/StudentMaterials/libraries/librariesForSWE/recaptcha4j-0.0.7 (4).jar">
+
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate">
+
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="D:/mum documments/EA material/jaf-1.1.1/activation.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -60,8 +73,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring 321">
+
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
