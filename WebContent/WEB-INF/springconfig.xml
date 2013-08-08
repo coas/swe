@@ -54,6 +54,12 @@
 		<property name="userDao" ref="userDao"/>
 	</bean>
 	
+	
+	
+	<bean id="applicationDao" class="cs.mum.dao.UserDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>	
+	
 	<bean id="userValidator" class="cs.mum.validation.UserValidator">
 		<property name="userLoginService" ref="userLoginService"/>
 	</bean>
