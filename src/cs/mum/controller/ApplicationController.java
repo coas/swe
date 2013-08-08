@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cs.mum.model.FinalSection;
 import cs.mum.model.PersonalInformation;
 
 
@@ -19,6 +20,12 @@ public class ApplicationController {
 	
 	@RequestMapping(value="/personalInformation")
 	public String personalInformation(Model model) {
+		return "application";
+	}
+	
+	@RequestMapping(value="/finalSection")
+	public String finalSection(@ModelAttribute("finalSection") FinalSection finalSection,
+			BindingResult result) {
 		return "application";
 	}
 	

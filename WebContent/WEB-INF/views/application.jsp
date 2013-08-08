@@ -204,6 +204,13 @@
 								itemValue="countryLivingNow.id" items="${countries}"/>
 						</form:select>
 				   </p>
+				   
+				   <p>
+						<form:label path="notOnListOfCountryLivingNow" 
+							cssStyle="font-style: italic;"> If 'Not on List':</form:label>
+						<form:input path="notOnListOfCountryLivingNow" 
+							id="notOnListOfCountryLivingNow" value=""/>
+				   </p>
 				</fieldset>
 					</form:form>
 				</div>
@@ -221,7 +228,8 @@
 					Tab5
 				</div>
 				<div id="tabs-6">
-					Tab6
+					<form:form action="${finalSectionUrl}" method="POST" commandName="finalSection">
+					</form:form>
 				</div>
 			</div>
     </section><!--content end-->
