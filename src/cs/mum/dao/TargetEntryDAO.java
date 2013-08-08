@@ -2,6 +2,7 @@ package cs.mum.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,9 +18,11 @@ public class TargetEntryDAO implements ITargetEntryDAO {
 
 	@Override
 	public List<TargetEntry> getListOfTargetEntries() {
+		Query query = sf.getCurrentSession().createQuery("FROM TargetEntry WHERE " +
+				" status=:status order by id");
+		query.setParameter("status", true);
 		@SuppressWarnings("unchecked")
-		List<TargetEntry> list = sf.getCurrentSession().createQuery("FROM TargetEntry order by id " +
-				"and status=Y").list();
+		List<TargetEntry> list = query.list();
 		return list;
 	}
 

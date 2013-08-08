@@ -255,7 +255,8 @@
 									for? </form:label>
 								<form:select path="targetEntry">
 									<form:option value="">Select Entry	</form:option>
-									<form:options items="${targetEntries}"/>
+									<form:options itemLabel="description" itemValue="id" 
+										items="${targetEntries}"/>
 								</form:select>	
 						
 							</p>
