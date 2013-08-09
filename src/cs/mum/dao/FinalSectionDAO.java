@@ -30,7 +30,7 @@ public class FinalSectionDAO implements IFinalSectionDAO {
 		return finalsections;
 	}
 
-	public FinalSection getUserById(long id) {
+	public FinalSection getFinalSectionById(long id) {
 		FinalSection finalSection = (FinalSection) sf.getCurrentSession().get(
 				FinalSection.class, id);
 		return finalSection;

@@ -10,5 +10,5 @@ public interface IFinalSectionDAO {
 	
 	public List<FinalSection> getAllFinalSections();
 	
-	public FinalSection getUserById(long id);
+	public FinalSection getFinalSectionById(long id);
 }
