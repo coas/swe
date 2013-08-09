@@ -5,9 +5,9 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cs.mum.model.User;
 
-public class UnivLevDataStructCourse implements IUnivLevDataStructCourse {
+
+public class UnivLevDataStructCourse implements IUnivLevDataStructCourseDAO {
 	
 	@Autowired
 	private SessionFactory sf;
@@ -16,11 +16,11 @@ public class UnivLevDataStructCourse implements IUnivLevDataStructCourse {
 		this.sf = sf;
 	}
 
-	public void insert(UnivLevDataStructCourse univdDataStructCourse) {
-		sf.getCurrentSession().saveOrUpdate(univdDataStructCourse);
+	public void insert(UnivLevDataStructCourse univDataStructCourse) {
+		sf.getCurrentSession().saveOrUpdate(univDataStructCourse);
 	}
 
-	public List<UnivLevDataStructCourse> getAllUnivdDataStructCourse() {
+	public List<UnivLevDataStructCourse> getAllUnivDataStructCourse() {
 
 		@SuppressWarnings("unchecked")
 		List<UnivLevDataStructCourse> univLevDataStructCourses = sf.getCurrentSession()
@@ -31,9 +31,10 @@ public class UnivLevDataStructCourse implements IUnivLevDataStructCourse {
 
 	public UnivLevDataStructCourse getUnivLevDataStructCourseById(long id) {
 		UnivLevDataStructCourse univLevDataStructCourse = (UnivLevDataStructCourse) sf.getCurrentSession().get(
-				User.class, id);
+				UnivLevDataStructCourse.class, id);
 		return univLevDataStructCourse;
 
 	}
 
+	
 }
