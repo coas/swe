@@ -9,12 +9,10 @@ import cs.mum.model.EnglishProficiency;
 
 
 public class EnglishProficiencyDAO implements IEnglishProficiencyDAO{
-
-	
 	@Autowired
 	private SessionFactory sf;
 
-	public void setSessionFactory(SessionFactory sf) {
+	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
 

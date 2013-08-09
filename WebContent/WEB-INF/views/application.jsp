@@ -231,7 +231,81 @@
 					</form:form>
 				</div>
 
-				<div id="tabs-2">Tab 2</div>
+				<div id="tabs-2">
+					<c:url var="englishProfficiencyUrl" value="englishProfficiency"/>
+					<form:form method="POST" action="${englishProfficiencyUrl}" 
+						commandName="englishProfficiency">
+						<fieldset id="englishProffeciency_1">
+							<legend>English Fluency</legend>
+							<p>
+								<form:label path="readAndWrite">How well can you read and write 
+									English?</form:label>
+								<form:select path="readAndWrite" id="readAndWrite">
+									<form:option value="">Please select</form:option>
+									<form:option value="Barely able to read/write">Barely able to 
+										read/write</form:option>
+									<form:option value="Able to read/write basic sentence">Able to 
+										read/write basic sentence</form:option>
+									<form:option value="Okay, but with some mistakes">Okay, but with 
+										some mistakes</form:option>
+									<form:option value="Like a native speaker">Like a native speaker 
+										</form:option>
+								</form:select>
+							</p>
+							
+							<p>
+								<form:label path="spokenEnglish">How well do you speak English? 
+									</form:label>
+								<form:select path="spokenEnglish" id="spokenEnglish">
+									<form:option value="">Please select</form:option>
+									<form:option value="Barely able to speak">Barely able to 
+										speak</form:option>
+									<form:option value="Able to speak basic sentence">Able to 
+										speak basic sentence</form:option>
+									<form:option value="Okay, but with some mistakes">Okay, but with 
+										some mistakes</form:option>
+									<form:option value="Like a native speaker">Like a native speaker 
+										</form:option>
+								</form:select>
+							</p>
+							
+							<p>
+								<form:label path="understandSpokenEnglish">How well do you understand spoken 
+									English?</form:label>
+								<form:select path="understandSpokenEnglish" 
+									id="understandSpokenEnglish">
+									<form:option value="">Please select</form:option>
+									<form:option value="Barely able to understand">Barely able to 
+										understand</form:option>
+									<form:option value="Able to understand basic sentence">Able to 
+										understand basic sentence</form:option>
+									<form:option value="Okay, but with some mistakes">Okay, but with 
+										some mistakes</form:option>
+									<form:option value="Like a native speaker">Like a native speaker 
+										</form:option>
+								</form:select>
+							</p>
+						</fieldset>
+						
+						<fieldset id="englishProffeciency_2">
+							<legend>Tests Taken (not required)</legend>
+							<p>
+								<span style="font-weight: bold;">TOEFL</span><br>
+								<form:label path="toeflYear" cssStyle="display:inline-block; 
+									width:150px;">Year Taken</form:label>
+								<form:select path="toeflYear">
+									<form:options items="${toeflYears}"/>
+								</form:select>
+								<form:label path="toeflYearScore" cssStyle="display:inline-block; 
+									width:150px;"></form:label>
+								<form:label path="toeflYearScore" cssStyle="display:inline-block; 
+									width:150px;">Score</form:label>
+								<form:input path="toeflYearScore" id="toeflYearScore" value=""/>
+								
+							</p>
+						</fieldset>
+					</form:form>
+				</div>
 				<div id="tabs-3">Tab3</div>
 				<div id="tabs-4">Tab4</div>
 				<div id="tabs-5">Tab5</div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cs.mum.model.Country;
+import cs.mum.model.EnglishProficiency;
 import cs.mum.model.FinalSection;
 import cs.mum.model.PersonalInformation;
 import cs.mum.model.TargetEntry;
@@ -28,7 +29,7 @@ public class ApplicationController {
 	public String application(@ModelAttribute("personalApplication") PersonalInformation personalInformation,
 			BindingResult resultPersonalInfo,
 			@ModelAttribute("finalSection") FinalSection finalSection, BindingResult resultFinalSection
-			,Model model) {
+			,Model model, @ModelAttribute("englishProfficiency") EnglishProficiency englishProficiency) {
 		List<Country> Listcountries = countryService.listOfCountries();
 		List<TargetEntry> listTargetEntry = targetEntryService.getListOfTargetEntries();
 		model.addAttribute("countries", Listcountries);

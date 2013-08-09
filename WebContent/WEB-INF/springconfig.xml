@@ -67,6 +67,13 @@
 		<property name="targetEntryDAO" ref="targetEntryDao"/>
 	</bean>
 	
+	<bean id="hearAboutUsDao" class="cs.mum.dao.HearAboutUsDAO">
+		<property name="sf" ref="sessionFactory"/>
+	</bean>
+	<bean id="hearAboutUsService" class="cs.mum.services.HearAboutUsService">
+		<property name="hearAboutUsDAO" ref="hearAboutUsDao"/>
+	</bean>
+	
 	
 	<bean id="applicationDao" class="cs.mum.dao.UserDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
