@@ -26,10 +26,10 @@ public class ApplicationDAO implements IApplicationDAO {
 	
 	public List<Application> getAllApplication(){
 		@SuppressWarnings("unchecked")
-		List<Application> application = sf.getCurrentSession()
+		List<Application> applications = sf.getCurrentSession()
 				.createQuery("from Application").list();
 
-		return application;
+		return applications;
 	}
 	
 	public Application getApplicationById(long id) {
