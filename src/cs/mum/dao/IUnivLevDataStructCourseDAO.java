@@ -2,12 +2,13 @@ package cs.mum.dao;
 
 import java.util.List;
 
+import cs.mum.model.UnivLevDataStructCourse;
+
 public interface IUnivLevDataStructCourseDAO {
 
+	public void insert(UnivLevDataStructCourse univLevDataStructCourse);
 	
-	public void insert(UnivLevDataStructCourse univDataStructCourse);
-	
-	public List<UnivLevDataStructCourse> getAllUnivDataStructCourse();
+	public List<UnivLevDataStructCourse> getAllUnivLevDataStructCourse();
 	
 	public UnivLevDataStructCourse getUnivLevDataStructCourseById(long id);
 }
